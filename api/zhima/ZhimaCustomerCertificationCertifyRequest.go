@@ -1,8 +1,8 @@
 package zhima
 
 import (
-  "github.com/LayGit/antsdk/api"
-  "github.com/LayGit/antsdk/utils"
+  "github.com/libra82/antsdk/api"
+  "github.com/libra82/antsdk/utils"
 )
 
 // 芝麻认证开始认证

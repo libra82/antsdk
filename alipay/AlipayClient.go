@@ -12,9 +12,11 @@ import (
   "regexp"
   "time"
   "bytes"
+  "fmt"
 
-  "github.com/LayGit/antsdk/utils"
-  "github.com/LayGit/antsdk/api"
+
+  "github.com/libra82/antsdk/utils"
+  "github.com/libra82/antsdk/api"
 )
 
 type AlipayClient struct {
@@ -37,7 +39,7 @@ func NewDefaultAlipayClient(serverUrl, appId, privateKey, alipayPublicKey string
     privateKey: privateKey,
     alipayPublicKey: alipayPublicKey,
     format: CONST_FORMAT_JSON,
-    signType: CONST_SIGN_TYPE_RSA,
+    signType: CONST_SIGN_TYPE_RSA2,
     encryptType: CONST_ENCRYPT_TYPE_AES,
   }
 }
@@ -55,9 +57,9 @@ func (this *AlipayClient) ExecuteWithAppAuthToken(request, response interface{},
   if err != nil {
     return err
   }
-
   // 验签
   strResp := string(bResult)
+  fmt.Println("网关响应：" + strResp)
 
   // 正则验签
   expResult := `(^\{\"[a-z|_]+\":)|(,\"sign\":\"[a-zA-Z0-9|\+|\/|\=]+\"\}$)`
@@ -71,6 +73,7 @@ func (this *AlipayClient) ExecuteWithAppAuthToken(request, response interface{},
   }
   sign := signMatchRes[1]
 
+  fmt.Println("验签字符串：" + sign)
   // 验证签名
   isOk, err := utils.SyncVerifySign(sign, []byte(result), []byte(this.alipayPublicKey))
   if err != nil {
@@ -91,6 +94,7 @@ func (this *AlipayClient) doPost(request interface{}, accessToken, appAuthToken 
   }
 
   reqUrl := this.getRequestUrl(requestHolder)
+  fmt.Println("Api请求：" + reqUrl)
 
   if fileReq, ok := request.(api.IAlipayUploadRequest); ok {
     return this.postFileRequest(reqUrl, requestHolder.ApplicationParams.GetMap(), fileReq.GetFileParams())
@@ -136,11 +140,11 @@ func (this *AlipayClient) postFileRequest(reqUrl string, params map[string]strin
   }
 
   for k, v := range fileParams {
-      fw, err := w.CreateFormFile(k, v.FileName)
-      if err != nil {
-        return nil, err
-      }
-      fw.Write(v.Content)
+    fw, err := w.CreateFormFile(k, v.FileName)
+    if err != nil {
+      return nil, err
+    }
+    fw.Write(v.Content)
   }
   w.Close()
 
@@ -234,6 +238,7 @@ func (this *AlipayClient) getRequestHolderWithSign(request api.IAlipayRequest, a
   if this.signType != "" {
     signMap := utils.GetSignMap(requestHolder)
     sign, err := utils.Sign(signMap, []byte(this.privateKey))
+    fmt.Println("签名后：" + sign)
     if err != nil {
       return nil, err
     }

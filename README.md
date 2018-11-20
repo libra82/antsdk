@@ -1,10 +1,13 @@
+# 说明
+本项目基于https://github.com/LayGit/antsdk修改而来，主要是为了适应支付宝的签名升级，对AlipayClient.go和SecurityUtil.go两个文件进行签名和加密算法进行不同的选择。
+
 # antsdk
 蚂蚁金服(支付宝)开放平台 go-sdk
 支付宝API文档:[传送门](https://doc.open.alipay.com/doc2/apiList?docType=4)
 
 ## 安装
 ```bash
-go get github.com/LayGit/antsdk
+go get github.com/libra82/antsdk
 ```
 
 ## 使用示例
@@ -12,8 +15,8 @@ go get github.com/LayGit/antsdk
 ```go
 import (
   "fmt"
-  "github.com/LayGit/antsdk/alipay"
-  "github.com/LayGit/antsdk/api/trade"
+  "github.com/libra82/antsdk/alipay"
+  "github.com/libra82/antsdk/api/trade"
 )
 
 func main() {

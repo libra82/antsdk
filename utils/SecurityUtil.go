@@ -8,13 +8,15 @@ import (
   "crypto"
   "crypto/x509"
   "crypto/rsa"
-  "crypto/sha1"
+  //"crypto/sha1"
+  "crypto/sha256"
   "errors"
   "net/url"
   "io"
   "io/ioutil"
   "os"
   "fmt"
+  //"strings"
 )
 
 func GetSignMap(requestHolder *RequestParametersHolder) map[string]string {
@@ -69,29 +71,39 @@ func Sign(mReq map[string]string, privateKey []byte) (string, error) {
   // 获取待签名参数
   signStr := GetSignStr(mReq)
 
-  block, _ := pem.Decode(privateKey)
+
+
+  //signStr = strings.Replace(signStr, "&", "&amp;", -1)
+  //signStr = strings.Replace(signStr, "\"", "&quot;", -1)
+
+  fmt.Println("签名字符串：" + signStr)
+  block, rest := pem.Decode(privateKey)
+  fmt.Println(string(rest))
   if block == nil {
     return "", errors.New("Sign private key decode error")
   }
 
-  prk8, err := x509.ParsePKCS8PrivateKey(block.Bytes)
+  prk8, err := x509.ParsePKCS1PrivateKey(block.Bytes)//.ParsePKCS8PrivateKey(block.Bytes)
   if err != nil {
     return "", err
   }
 
-  pKey := prk8.(*rsa.PrivateKey)
+  //pKey := prk8.(*rsa.PrivateKey)
+  pKey := prk8
 
   return RSASign(signStr, pKey)
 }
 
 func RSASign(origData string, privateKey *rsa.PrivateKey) (string, error) {
-  h := sha1.New()
+  //h := sha1.New()
+  h := sha256.New()
   h.Write([]byte(origData))
   digest := h.Sum(nil)
 
-  s, err := rsa.SignPKCS1v15(nil, privateKey, crypto.SHA1, []byte(digest))
+  //s, err := rsa.SignPKCS1v15(nil, privateKey, crypto.SHA1, []byte(digest))
+  s, err := rsa.SignPKCS1v15(nil, privateKey, crypto.SHA256, []byte(digest))
   if err != nil {
-      return "", err
+    return "", err
   }
   data := base64.StdEncoding.EncodeToString(s)
   return string(data), nil
@@ -114,7 +126,7 @@ func AsyncVerifySign(body, alipayPublicKey []byte) (bool, error) {
 
   for k, v := range data {
     if k == "sign" || k == "sign_type" { //不要'sign'和'sign_type'
-        continue
+      continue
     }
     m[k] = v[0]
   }
@@ -132,22 +144,23 @@ func RSAVerify(src, sign, alipayPublicKey []byte) (bool, error) {
   block, _ := pem.Decode(alipayPublicKey)
   pub, err := x509.ParsePKIXPublicKey(block.Bytes)
   if err != nil {
-      return false, err
+    return false, err
   }
   rsaPub, _ := pub.(*rsa.PublicKey)
 
   // 计算代签名字串的SHA1哈希
-  t := sha1.New()
+  //t := sha1.New()
+  t := sha256.New()
   io.WriteString(t, string(src))
   digest := t.Sum(nil)
 
   // base64 decode,必须步骤，支付宝对返回的签名做过base64 encode必须要反过来decode才能通过验证
   data, _ := base64.StdEncoding.DecodeString(string(sign))
-
   hex.EncodeToString(data)
 
   // 调用rsa包的VerifyPKCS1v15验证签名有效性
-  err = rsa.VerifyPKCS1v15(rsaPub, crypto.SHA1, digest, data)
+  //err = rsa.VerifyPKCS1v15(rsaPub, crypto.SHA1, digest, data)
+  err = rsa.VerifyPKCS1v15(rsaPub, crypto.SHA256, digest, data)
   if err != nil {
     fmt.Println(string(src))
     fmt.Println("error")
