@@ -1,5 +1,5 @@
 # 说明
-本项目基于https://github.com/LayGit/antsdk修改而来，主要是为了适应支付宝的签名升级，对AlipayClient.go和SecurityUtil.go两个文件进行签名和加密算法进行不同的选择。
+本项目基于 https://github.com/LayGit/antsdk 修改而来，主要是为了适应支付宝的签名升级，对AlipayClient.go和SecurityUtil.go两个文件进行签名和加密算法进行不同的选择，另外加入生成APP客户端对接支付接口（alipay.trade.app.pay）请求字符串的方法。
 
 # antsdk
 蚂蚁金服(支付宝)开放平台 go-sdk
@@ -13,31 +13,40 @@ go get antsdk
 ## 使用示例
 
 ```go
-import (
-  "fmt"
-  "antsdk/alipay"
-  "antsdk/api/trade"
-)
+func TestAliPay_TradeQuery(t *testing.T) {
+	client := alipay.NewDefaultAlipayClient("https://openapi.alipay.com/gateway.do", appId, string(privateKey), string(alipayPublicKey))
+	request := &trade.AlipayTradeQueryRequest{}
+	request.BizContent.OutTradeNo = "L123456"
+	var response trade.AlipayTradeQueryResponse
+	err := client.Execute(request, &response)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		if response.IsSuccess() {
+			fmt.Println("调用成功")
+		} else {
+			fmt.Println("调用失败")
+		}
+	}
+}
 
-func main() {
-    client := alipay.NewDefaultAlipayClient("https://openapi.alipay.com/gateway.do", "商户AppId", "商户密钥", "支付宝公钥")
-    // 创建请求
-    request := &trade.AlipayTradeQueryRequest{}
-    // 设置参数
-    request.BizContent.OutTradeNo = "L123456"
-    // 请求响应
-    var response trade.AlipayTradeQueryResponse
-    err := client.Execute(request, &response)
-    if err != nil {
-        // 错误处理
-        fmt.Println(err)
-    } else {
-        if response.IsSuccess() {
-          fmt.Println("调用成功")
-        } else {
-          fmt.Println("调用失败")
-        }
-    }
+func TestAliPay_TradeAppPay(t *testing.T) {
+	client := alipay.NewDefaultAlipayClient("https://openapi.alipay.com/gateway.do", appId, string(privateKey), string(alipayPublicKey))
+	request := &trade.AlipayTradeAppPayRequest{}
+	request.NotifyUrl = "http://3s.dkys.org:1234/api/pay/alipay/alipayNotify"
+	request.BizContent.Body = "测试一下"
+	request.BizContent.Subject = "测试订单"
+	request.BizContent.OutTradeNo = "L123456"
+	request.BizContent.TotalAmount = "0.01"
+	request.BizContent.ProductCode = "AJY20181122"
+	
+        // 这里和普通的接口调用不同，使用的是sdkExecute，orderString可以直接返回给APP做支付请求，无需再做处理。
+	orderString, err := client.SdkExecute(request)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("调用成功-->>>>" + *orderString)
+	}
 }
 ```
 
