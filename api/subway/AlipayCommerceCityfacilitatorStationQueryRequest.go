@@ -1,8 +1,8 @@
 package subway
 
 import (
-  "github.com/libra82/antsdk/api"
-  "github.com/libra82/antsdk/utils"
+  "antsdk/api"
+  "antsdk/utils"
 )
 
 // 地铁购票站点数据查询

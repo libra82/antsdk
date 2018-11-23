@@ -1,8 +1,8 @@
 package marketing
 
 import (
-  "github.com/libra82/antsdk/api"
-  "github.com/libra82/antsdk/utils"
+  "antsdk/api"
+  "antsdk/utils"
 )
 
 // 口碑营销活动列表查询

@@ -1,8 +1,8 @@
 package finance
 
 import (
-  "github.com/libra82/antsdk/api"
-  "github.com/libra82/antsdk/utils"
+  "antsdk/api"
+  "antsdk/utils"
 )
 
 // 余利宝历史交易查询

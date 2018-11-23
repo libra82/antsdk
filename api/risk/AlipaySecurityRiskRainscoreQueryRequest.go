@@ -1,8 +1,8 @@
 package risk
 
 import (
-  "github.com/libra82/antsdk/api"
-  "github.com/libra82/antsdk/utils"
+  "antsdk/api"
+  "antsdk/utils"
 )
 
 // “蚁盾”风险评分服务

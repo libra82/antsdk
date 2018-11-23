@@ -1,8 +1,8 @@
 package bill
 
 import (
-  "github.com/libra82/antsdk/api"
-  "github.com/libra82/antsdk/utils"
+  "antsdk/api"
+  "antsdk/utils"
 )
 
 type AlipayDataDataserviceBillDownloadurlQueryRequest struct {

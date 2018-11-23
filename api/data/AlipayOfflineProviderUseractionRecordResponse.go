@@ -1,7 +1,7 @@
 package data
 
 import (
-  "github.com/libra82/antsdk/api"
+  "antsdk/api"
 )
 
 type AlipayOfflineProviderUseractionRecordResponse struct {

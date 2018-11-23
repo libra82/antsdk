@@ -1,8 +1,8 @@
 package market
 
 import (
-  "github.com/libra82/antsdk/api"
-  "github.com/libra82/antsdk/utils"
+  "antsdk/api"
+  "antsdk/utils"
 )
 
 // 服务市场商户确认订购通知

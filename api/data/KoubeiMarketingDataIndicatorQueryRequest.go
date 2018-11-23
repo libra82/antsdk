@@ -1,8 +1,8 @@
 package data
 
 import (
-  "github.com/libra82/antsdk/api"
-  "github.com/libra82/antsdk/utils"
+  "antsdk/api"
+  "antsdk/utils"
 )
 
 // 口碑商户经营数据查询接口

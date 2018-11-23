@@ -1,8 +1,8 @@
 package data
 
 import (
-  "github.com/libra82/antsdk/api"
-  "github.com/libra82/antsdk/utils"
+  "antsdk/api"
+  "antsdk/utils"
 )
 
 // isv 回传的商户操作行为信息调用接口

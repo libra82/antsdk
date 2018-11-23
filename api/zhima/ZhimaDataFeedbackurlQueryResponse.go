@@ -1,7 +1,7 @@
 package zhima
 
 import (
-  "github.com/libra82/antsdk/api"
+  "antsdk/api"
 )
 
 type ZhimaDataFeedbackurlQueryResponse struct {

@@ -1,8 +1,8 @@
 package open
 
 import (
-  "github.com/libra82/antsdk/api"
-  "github.com/libra82/antsdk/utils"
+  "antsdk/api"
+  "antsdk/utils"
 )
 
 // 模板消息行业设置修改接口

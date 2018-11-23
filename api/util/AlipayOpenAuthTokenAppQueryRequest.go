@@ -1,8 +1,8 @@
 package util
 
 import (
-  "github.com/libra82/antsdk/api"
-  "github.com/libra82/antsdk/utils"
+  "antsdk/api"
+  "antsdk/utils"
 )
 
 // 查询某个应用授权AppAuthToken的授权信息

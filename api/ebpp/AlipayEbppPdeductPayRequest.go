@@ -1,8 +1,8 @@
 package ebpp
 
 import (
-  "github.com/libra82/antsdk/api"
-  "github.com/libra82/antsdk/utils"
+  "antsdk/api"
+  "antsdk/utils"
 )
 
 // 公共事业缴费直连代扣扣款支付接口

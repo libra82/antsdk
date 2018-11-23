@@ -1,8 +1,8 @@
 package zhima
 
 import (
-  "github.com/libra82/antsdk/api"
-  "github.com/libra82/antsdk/utils"
+  "antsdk/api"
+  "antsdk/utils"
 )
 
 // 芝麻信用评分普惠版

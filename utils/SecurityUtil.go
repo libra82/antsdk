@@ -16,7 +16,7 @@ import (
   "io/ioutil"
   "os"
   "fmt"
-  //"strings"
+
 )
 
 func GetSignMap(requestHolder *RequestParametersHolder) map[string]string {
@@ -71,14 +71,13 @@ func Sign(mReq map[string]string, privateKey []byte) (string, error) {
   // 获取待签名参数
   signStr := GetSignStr(mReq)
 
-
-
   //signStr = strings.Replace(signStr, "&", "&amp;", -1)
   //signStr = strings.Replace(signStr, "\"", "&quot;", -1)
+  //signStr = url.QueryEscape(signStr)
 
   fmt.Println("签名字符串：" + signStr)
-  block, rest := pem.Decode(privateKey)
-  fmt.Println(string(rest))
+  block, _ := pem.Decode(privateKey)
+
   if block == nil {
     return "", errors.New("Sign private key decode error")
   }

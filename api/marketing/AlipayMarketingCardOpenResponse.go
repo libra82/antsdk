@@ -1,7 +1,7 @@
 package marketing
 
 import (
-  "github.com/libra82/antsdk/api"
+  "antsdk/api"
 )
 
 type AlipayMarketingCardOpenResponse struct {

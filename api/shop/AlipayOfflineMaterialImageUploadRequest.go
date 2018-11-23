@@ -1,8 +1,8 @@
 package shop
 
 import (
-  "github.com/libra82/antsdk/api"
-  "github.com/libra82/antsdk/utils"
+  "antsdk/api"
+  "antsdk/utils"
 )
 
 // 上传门店照片和视频接口

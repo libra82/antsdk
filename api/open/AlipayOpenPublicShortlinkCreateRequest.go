@@ -1,8 +1,8 @@
 package open
 
 import (
-  "github.com/libra82/antsdk/api"
-  "github.com/libra82/antsdk/utils"
+  "antsdk/api"
+  "antsdk/utils"
 )
 
 // 服务窗短链自主生成接口

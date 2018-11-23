@@ -1,8 +1,8 @@
 package data
 
 import (
-  "github.com/libra82/antsdk/api"
-  "github.com/libra82/antsdk/utils"
+  "antsdk/api"
+  "antsdk/utils"
 )
 
 // 营销活动人群组规则列表分页查询接口

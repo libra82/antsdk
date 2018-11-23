@@ -1,8 +1,8 @@
 package ebpp
 
 import (
-  "github.com/libra82/antsdk/api"
-  "github.com/libra82/antsdk/utils"
+  "antsdk/api"
+  "antsdk/utils"
 )
 
 // 缴费直连代扣签约

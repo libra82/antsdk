@@ -1,8 +1,8 @@
 package marketing
 
 import (
-  "github.com/libra82/antsdk/api"
-  "github.com/libra82/antsdk/utils"
+  "antsdk/api"
+  "antsdk/utils"
 )
 
 // 会员卡消费记录同步

@@ -1,7 +1,7 @@
 package risk
 
 import (
-  "github.com/libra82/antsdk/api"
+  "antsdk/api"
 )
 
 type AlipaySecurityRiskRainscoreQueryResponse struct {
