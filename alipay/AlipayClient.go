@@ -180,10 +180,11 @@ func (this *AlipayClient) getRequestString(requestHolder *utils.RequestParameter
   sbUrl.Append(utils.BuildAndSortQuery(retMap))
   if signStr != "" {
     sbUrl.Append("&sign=")
-    sbUrl.Append(signStr)
+    sbUrl.Append(url.QueryEscape(signStr))
   }
 
-  return strings.Replace(sbUrl.ToString(), "+", "%20", -1)
+  //return strings.Replace(sbUrl.ToString(), "+", "%20", -1)
+  return sbUrl.ToString()
 }
 //除支付以外的接口的请求字符串（服务端调用）
 func (this *AlipayClient) getRequestUrl(requestHolder *utils.RequestParametersHolder) string {
@@ -204,7 +205,8 @@ func (this *AlipayClient) getRequestUrl(requestHolder *utils.RequestParametersHo
     sbUrl.Append(bizParamQuery)
   }
 
-  return strings.Replace(sbUrl.ToString(), "+", "%20", -1)
+  //return strings.Replace(sbUrl.ToString(), "+", "%20", -1)
+  return sbUrl.ToString()
 }
 
 func (this *AlipayClient) getRequestHolderWithSign(request api.IAlipayRequest, accessToken, appAuthToken string) (*utils.RequestParametersHolder, error) {
@@ -259,8 +261,8 @@ func (this *AlipayClient) getRequestHolderWithSign(request api.IAlipayRequest, a
   protocalOptParams := utils.NewAlipayHashMap()
   protocalOptParams.Put(CONST_FORMAT, this.format)
   protocalOptParams.Put(CONST_ACCESS_TOKEN, accessToken)
-  //protocalOptParams.Put(CONST_ALIPAY_SDK, CONST_SDK_VERSION)
-  //protocalOptParams.Put(CONST_PROD_CODE, request.GetProdCode())
+  protocalOptParams.Put(CONST_ALIPAY_SDK, CONST_SDK_VERSION)
+  protocalOptParams.Put(CONST_PROD_CODE, request.GetProdCode())
   requestHolder.ProtocalOptParams = protocalOptParams
 
   if this.signType != "" {
