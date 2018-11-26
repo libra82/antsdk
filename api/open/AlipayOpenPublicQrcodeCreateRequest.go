@@ -1,8 +1,8 @@
 package open
 
 import (
-  "antsdk/api"
-  "antsdk/utils"
+  "github.com/libra82/antsdk/api"
+  "github.com/libra82/antsdk/utils"
 )
 
 // 带参推广二维码接口

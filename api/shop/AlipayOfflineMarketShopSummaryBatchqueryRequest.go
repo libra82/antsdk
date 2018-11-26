@@ -1,8 +1,8 @@
 package shop
 
 import (
-  "antsdk/api"
-  "antsdk/utils"
+  "github.com/libra82/antsdk/api"
+  "github.com/libra82/antsdk/utils"
 )
 
 // 门店摘要信息批量查询接口

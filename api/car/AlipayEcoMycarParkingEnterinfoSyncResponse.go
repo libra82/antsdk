@@ -1,7 +1,7 @@
 package car
 
 import (
-  "antsdk/api"
+  "github.com/libra82/antsdk/api"
 )
 
 type AlipayEcoMycarParkingEnterinfoSyncResponse struct {

@@ -1,8 +1,8 @@
 package coupon
 
 import (
-  "antsdk/api"
-  "antsdk/utils"
+  "github.com/libra82/antsdk/api"
+  "github.com/libra82/antsdk/utils"
 )
 
 // 支付宝pass更新模版接口

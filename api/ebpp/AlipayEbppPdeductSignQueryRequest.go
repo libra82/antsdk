@@ -1,8 +1,8 @@
 package ebpp
 
 import (
-  "antsdk/api"
-  "antsdk/utils"
+  "github.com/libra82/antsdk/api"
+  "github.com/libra82/antsdk/utils"
 )
 
 // 直连代扣协议查询接口

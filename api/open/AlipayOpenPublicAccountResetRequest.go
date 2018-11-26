@@ -1,8 +1,8 @@
 package open
 
 import (
-  "antsdk/api"
-  "antsdk/utils"
+  "github.com/libra82/antsdk/api"
+  "github.com/libra82/antsdk/utils"
 )
 
 // 重新设置绑定商家会员号

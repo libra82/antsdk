@@ -1,7 +1,7 @@
 package trade
 
 import (
-  "antsdk/api"
+  "github.com/libra82/antsdk/api"
 )
 
 type AlipayTradeFastpayRefundQueryResponse struct {

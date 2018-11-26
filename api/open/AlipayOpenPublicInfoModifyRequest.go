@@ -1,8 +1,8 @@
 package open
 
 import (
-  "antsdk/api"
-  "antsdk/utils"
+  "github.com/libra82/antsdk/api"
+  "github.com/libra82/antsdk/utils"
 )
 
 // 服务窗基础信息修改接口

@@ -15,8 +15,8 @@ import (
   "fmt"
 
 
-  "antsdk/utils"
-  "antsdk/api"
+  "github.com/libra82/antsdk/utils"
+  "github.com/libra82/antsdk/api"
 )
 
 type AlipayClient struct {

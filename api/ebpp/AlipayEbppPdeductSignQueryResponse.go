@@ -1,7 +1,7 @@
 package ebpp
 
 import (
-  "antsdk/api"
+  "github.com/libra82/antsdk/api"
 )
 
 type AlipayEbppPdeductSignQueryResponse struct {

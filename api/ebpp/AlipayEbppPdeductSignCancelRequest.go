@@ -1,8 +1,8 @@
 package ebpp
 
 import (
-  "antsdk/api"
-  "antsdk/utils"
+  "github.com/libra82/antsdk/api"
+  "github.com/libra82/antsdk/utils"
 )
 
 // 缴费直连代扣取消签约

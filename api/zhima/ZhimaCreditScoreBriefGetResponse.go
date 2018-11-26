@@ -1,7 +1,7 @@
 package zhima
 
 import (
-  "antsdk/api"
+  "github.com/libra82/antsdk/api"
 )
 
 type ZhimaCreditScoreBriefGetResponse struct {

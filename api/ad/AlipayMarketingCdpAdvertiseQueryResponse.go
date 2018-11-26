@@ -1,7 +1,7 @@
 package ad
 
 import (
-  "antsdk/api"
+  "github.com/libra82/antsdk/api"
 )
 
 type AlipayMarketingCdpAdvertiseQueryResponse struct {

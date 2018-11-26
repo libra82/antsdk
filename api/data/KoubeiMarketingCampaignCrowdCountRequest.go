@@ -1,8 +1,8 @@
 package data
 
 import (
-  "antsdk/api"
-  "antsdk/utils"
+  "github.com/libra82/antsdk/api"
+  "github.com/libra82/antsdk/utils"
 )
 
 // 营销活动人群组人数统计接口

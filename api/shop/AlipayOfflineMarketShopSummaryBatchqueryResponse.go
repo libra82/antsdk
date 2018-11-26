@@ -1,7 +1,7 @@
 package shop
 
 import (
-  "antsdk/api"
+  "github.com/libra82/antsdk/api"
 )
 
 type AlipayOfflineMarketShopSummaryBatchqueryResponse struct {

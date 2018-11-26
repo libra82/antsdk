@@ -1,8 +1,8 @@
 package data
 
 import (
-  "antsdk/api"
-  "antsdk/utils"
+  "github.com/libra82/antsdk/api"
+  "github.com/libra82/antsdk/utils"
 )
 
 // 自定义报表规则创建及更新接口

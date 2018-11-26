@@ -1,7 +1,7 @@
 package data
 
 import (
-  "antsdk/api"
+  "github.com/libra82/antsdk/api"
 )
 
 type KoubeiMarketingDataCustomreportBatchqueryResponse struct {
