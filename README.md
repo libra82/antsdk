@@ -13,10 +13,11 @@ go get antsdk
 ## 使用示例
 
 ```go
+//订单查询
 func TestAliPay_TradeQuery(t *testing.T) {
 	client := alipay.NewDefaultAlipayClient("https://openapi.alipay.com/gateway.do", appId, string(privateKey), string(alipayPublicKey))
 	request := &trade.AlipayTradeQueryRequest{}
-	request.BizContent.OutTradeNo = "L123456"
+	request.BizContent.OutTradeNo = "XML1234567890"
 	var response trade.AlipayTradeQueryResponse
 	err := client.Execute(request, &response)
 	if err != nil {
@@ -29,11 +30,11 @@ func TestAliPay_TradeQuery(t *testing.T) {
 		}
 	}
 }
-
+//生成支付请求字符串
 func TestAliPay_TradeAppPay(t *testing.T) {
 	client := alipay.NewDefaultAlipayClient("https://openapi.alipay.com/gateway.do", appId, string(privateKey), string(alipayPublicKey))
 	request := &trade.AlipayTradeAppPayRequest{}
-	request.NotifyUrl = "http://devapi.newmaliang.com/api/pay/alipay/alipayNotify"
+	request.NotifyUrl = "http://your-server/api/pay/alipay/alipayNotify"
 	request.BizContent.Body = "测试一下"
 	request.BizContent.Subject = "测试订单"
 	request.BizContent.OutTradeNo = "XML1234567890"
