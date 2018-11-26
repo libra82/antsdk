@@ -33,14 +33,13 @@ func TestAliPay_TradeQuery(t *testing.T) {
 func TestAliPay_TradeAppPay(t *testing.T) {
 	client := alipay.NewDefaultAlipayClient("https://openapi.alipay.com/gateway.do", appId, string(privateKey), string(alipayPublicKey))
 	request := &trade.AlipayTradeAppPayRequest{}
-	request.NotifyUrl = "http://3s.dkys.org:1234/api/pay/alipay/alipayNotify"
+	request.NotifyUrl = "http://devapi.newmaliang.com/api/pay/alipay/alipayNotify"
 	request.BizContent.Body = "测试一下"
 	request.BizContent.Subject = "测试订单"
-	request.BizContent.OutTradeNo = "L123456"
+	request.BizContent.OutTradeNo = "XML1234567890"
 	request.BizContent.TotalAmount = "0.01"
-	request.BizContent.ProductCode = "AJY20181122"
-	
-        // 这里和普通的接口调用不同，使用的是sdkExecute，orderString可以直接返回给APP做支付请求，无需再做处理。
+	request.BizContent.TimeoutExpress = "30m"
+	// 这里和普通的接口调用不同，使用的是sdkExecute，orderString可以直接返回给APP做支付请求，无需再做处理。
 	orderString, err := client.SdkExecute(request)
 	if err != nil {
 		fmt.Println(err)
