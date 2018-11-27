@@ -44,14 +44,14 @@ func NewDefaultAlipayClient(serverUrl, appId, privateKey, alipayPublicKey string
   }
 }
 //支付接口（alipay.trade.app.pay），返回加签名的请求字符串（该字符串直接返回给APP客户端，用于拉起支付宝发起支付请求）
-func (this *AlipayClient) SdkExecute(request interface{}) (*string, error) {
+func (this *AlipayClient) SdkExecute(request interface{}) (string, error) {
   requestHolder, err := this.getRequestHolderWithSign(reflect.ValueOf(request).Interface().(api.IAlipayRequest), "", "")
   if err != nil {
-    return nil, err
+    return "", err
   }
 
   reqUrl := this.getRequestString(requestHolder)
-  return &reqUrl, nil
+  return reqUrl, nil
 }
 //除支付以外的接口
 func (this *AlipayClient) Execute(request, response interface{}) error {
