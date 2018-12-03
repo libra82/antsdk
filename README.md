@@ -7,7 +7,7 @@
 
 ## 安装
 ```bash
-go get antsdk
+go get -u github.com/libra82/antsdk
 ```
 
 ## 使用示例
@@ -45,7 +45,7 @@ func TestAliPay_TradeAppPay(t *testing.T) {
 	if err != nil {
 		fmt.Println(err)
 	} else {
-		fmt.Println("调用成功-->>>>" + *orderString)
+		fmt.Println("调用成功-->>>>" + orderString)
 	}
 }
 ```
